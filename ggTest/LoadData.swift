@@ -13,7 +13,7 @@ class LoadData {
     let realm = try! Realm()
     var category: Category = Category()
     func LoadCategory() {
-        category.id = 0
+        category.id = 01
         category.name = "Game"
         LoadProduct(categ: category.name)
         try! realm.write {
@@ -39,11 +39,11 @@ class LoadData {
         }
     }
     func CategoryLoadDB() -> Results<Category>{
-        let last_data = self.realm.objects(Category).filter("id BEGINSWITH %@")
+        let last_data = self.realm.objects(Category).filter("name")
         return last_data
     }
     func ProductLoadDB() -> Results<Product>{
-        let last_data = self.realm.objects(Product).filter("id BEGINSWITH %@")
+        let last_data = self.realm.objects(Product).filter("name")
         print(last_data)
         return last_data
     }

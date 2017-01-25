@@ -15,7 +15,7 @@ import SwiftyJSON
 class ViewController: UITableViewController {
     
     
-//    let realm = try! Realm()
+    let realm = try! Realm()
     var products: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,13 @@ class ViewController: UITableViewController {
 
 //        print(Realm.Configuration.defaultConfiguration.fileURL!)
         loadData.ProductClear()
-//        loadData.LoadCategory()
+        loadData.LoadCategory()
+        let category_list = self.realm.objects(Category)
+        for list in category_list {
+            for value in list.ProductList {
+                products.append(value.name)
+            }
+        }
 //        loadData.LoadProduct(categ: "games")
 //        var ResultProductData: Results<Product> = loadData.ProductLoadDB()
 //        for item in ResultProductData {
