@@ -14,11 +14,22 @@ import SwiftyJSON
 
 class ViewController: UITableViewController {
     
-//    var loadData: LoadData = LoadData()
     
-    var products: [String] = ["Section 1"]
+//    let realm = try! Realm()
+    var products: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+      //  var categ: Category = Category()
+        var loadData: LoadData = LoadData()
+
+//        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        loadData.ProductClear()
+//        loadData.LoadCategory()
+//        loadData.LoadProduct(categ: "games")
+//        var ResultProductData: Results<Product> = loadData.ProductLoadDB()
+//        for item in ResultProductData {
+//            products.append(item.name)
+//        }
         // Do any additional setup after loading the view, typically from a nib.
     }
     
