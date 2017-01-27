@@ -14,29 +14,57 @@ import SwiftyJSON
 
 class ViewController: UITableViewController {
     
-    
     let realm = try! Realm()
     var products: [String] = []
+    
+    func LoadAllData() {
+        var category_list = realm.objects(Category)
+        var product_list = realm.objects(Product)
+        do {
+            if (product_list.isEmpty != nil) {
+            category_list = realm.objects(Category)
+            for list in category_list {
+                for item in list.ProductList {
+                    products.append(item.name)
+                }
+            }
+                if (products.isEmpty == nil) {
+                    print("Array is empty")
+                }
+            } else {
+                print("no products in database")
+            }
+        } catch {
+            print("Error to load all data")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
       //  var categ: Category = Category()
         var loadData: LoadData = LoadData()
-
-//        print(Realm.Configuration.defaultConfiguration.fileURL!)
-        loadData.ProductClear()
-        loadData.LoadCategory()
+        //loadData.LoadCategory()
+        LoadAllData()
+        
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
+    }
+    func RefreshList(){
         let category_list = self.realm.objects(Category)
+        if (category_list.isEmpty != true && products.isEmpty == nil)
+        {
         for list in category_list {
             for value in list.ProductList {
-                products.append(value.name)
+                self.products.append(value.name)
+                print(value.name + "     в массиве (ревреш)")
+            }
             }
         }
-//        loadData.LoadProduct(categ: "games")
-//        var ResultProductData: Results<Product> = loadData.ProductLoadDB()
-//        for item in ResultProductData {
-//            products.append(item.name)
-//        }
-        // Do any additional setup after loading the view, typically from a nib.
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,7 +76,11 @@ class ViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
+        var label1 = UILabel()
+        label1 = cell.viewWithTag(1) as! UILabel
+        label1.text = ""
         cell.textLabel?.text = products[indexPath.row]
+        
         return cell
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
