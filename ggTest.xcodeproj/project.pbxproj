@@ -17,6 +17,7 @@
 		24F679A51E380F29005D9813 /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F679A41E380F29005D9813 /* LoadData.swift */; };
 		24F679A71E380F45005D9813 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F679A61E380F45005D9813 /* Product.swift */; };
 		24F679CD1E3AE79E005D9813 /* LaunchVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F679CC1E3AE79E005D9813 /* LaunchVCViewController.swift */; };
+		24F679D11E3AF74F005D9813 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F679D01E3AF74F005D9813 /* Categories.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		24F679A41E380F29005D9813 /* LoadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
 		24F679A61E380F45005D9813 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		24F679CC1E3AE79E005D9813 /* LaunchVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchVCViewController.swift; sourceTree = "<group>"; };
+		24F679D01E3AF74F005D9813 /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		8FD48B1A063376FFF25310A0 /* Pods-ggTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ggTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ggTest/Pods-ggTest.debug.xcconfig"; sourceTree = "<group>"; };
 		A7350D73B36439B0B97A4D0B /* Pods-ggTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ggTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-ggTest/Pods-ggTest.release.xcconfig"; sourceTree = "<group>"; };
 		FB260ABE34F09A7EC297F6EC /* Pods_ggTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ggTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +77,7 @@
 				24F6799A1E37B427005D9813 /* Info.plist */,
 				24F6798E1E37B427005D9813 /* AppDelegate.swift */,
 				24F679901E37B427005D9813 /* ViewController.swift */,
+				24F679D01E3AF74F005D9813 /* Categories.swift */,
 				24F679CC1E3AE79E005D9813 /* LaunchVCViewController.swift */,
 				24F679A21E380DA1005D9813 /* DetailViewController.swift */,
 				24F679A41E380F29005D9813 /* LoadData.swift */,
@@ -225,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24F679A31E380DA1005D9813 /* DetailViewController.swift in Sources */,
+				24F679D11E3AF74F005D9813 /* Categories.swift in Sources */,
 				24F679911E37B427005D9813 /* ViewController.swift in Sources */,
 				24F679A71E380F45005D9813 /* Product.swift in Sources */,
 				24F6798F1E37B427005D9813 /* AppDelegate.swift in Sources */,

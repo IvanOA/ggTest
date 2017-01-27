@@ -16,6 +16,9 @@ class LaunchViewController: UIViewController {
     var loaddata: LoadData = LoadData()
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        print("something")
+
         loaddata.LoadCategory()
         
         

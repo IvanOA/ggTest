@@ -13,7 +13,7 @@ class Category: Object {
     var ProductList = List<Product>()
     dynamic var id: Int = 0
     dynamic var name: String = ""
-    
+    dynamic var teg: String = ""
     override static func primaryKey() -> String?{
         return "id"
     }
@@ -21,6 +21,7 @@ class Category: Object {
 class Product: Object {
     dynamic var id: Int = 0
     dynamic var name: String = ""
+    dynamic var categ_id: Int = 0
     dynamic var upvotes: Int = 0
     dynamic var discription: String? = nil
     dynamic var thumbnall: String? = nil

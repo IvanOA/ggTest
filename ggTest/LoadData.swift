@@ -15,57 +15,49 @@ import SwiftyJSON
 class LoadData {
     let realm = try! Realm()
     var category: Category = Category()
-    
     func LoadCategory() {
-        var url2: String = "https://api.producthunt.com/v1/posts/all?search[category]=games&access_token=591f99547f569b05ba7d8777e2e0824eea16c440292cce1f8dfb3952cc9937ff"
-        Alamofire.request(url2).validate().responseJSON { response in
+        print("start loading categories")
+        var url1: String = "https://api.producthunt.com/v1/categories?access_token=591f99547f569b05ba7d8777e2e0824eea16c440292cce1f8dfb3952cc9937ff"
+        var categ = realm.objects(Category)
+        if (categ.isEmpty == nil) {
+            print("DB is empty")
+        }
+        Alamofire.request(url1).validate().responseJSON { response in
+            print("alamofire started")
             switch response.result {
+                
             case .success:
+                print("loading categories")
                 if let value = response.result.value {
                     let json = JSON(value)
-                    // var category: Category = Category()
-                    for (_,subJson):(String, JSON) in json["posts"]{
-                        var product: Product = Product()
-                        product.id = subJson["id"].intValue
-                        product.upvotes = subJson["votes_count"].intValue
-                        product.name = subJson["name"].stringValue
-                        product.url = subJson["redirect_url"].stringValue
-                        self.category.ProductList.append(product)
+                    for (_,subJson):(String, JSON) in json["categories"]{
+                        var category1: Category = Category()
+                        category1.id = subJson["id"].intValue
+                        category1.name = subJson["name"].stringValue
+                        category1.teg = subJson["slug"].stringValue
+                        print("1 element added with id \(category1.id)")
+                        try! self.realm.write {
+                            self.realm.add(category1, update: true)
+                            
+                        }
                         
                     }
-                    
-                    try! self.realm.write {
-                        self.realm.add(self.category, update: true)
-                        for list in self.category.ProductList {
-                            print(list.name)
-                        }
-                    }
-                    
+//                    try! self.realm.write {
+//                        self.realm.add(self.category_list, update: true)
+//                        
+//                    }
+                    print("loaded categories")
                 }
             case .failure(let error):
+                print("failed to load categories")
                 print(error)
             }
         }
-//        var category_list = realm.objects(Category)
-//        var product_list = realm.objects(Product)
-       // if (category_list.isEmpty == nil) {
-        category.id = 01
-        category.name = "Game"
         
-       // if (product_list.isEmpty == nil) {
-            LoadProduct(categ: category.name)
-       // }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){
-        try! self.realm.write {
-            self.realm.add(self.category)
-            }
-        }
-    //}
     }
     func LoadProduct(categ: String) {
         //let utilityQueue = DispatchQueue.global(qos: .utility)
-        var url2: String = "https://api.producthunt.com/v1/posts/all?search[category]=games&access_token=591f99547f569b05ba7d8777e2e0824eea16c440292cce1f8dfb3952cc9937ff"
+        var url2: String = "https://api.producthunt.com/v1/posts/all?search[category]=tech&access_token=591f99547f569b05ba7d8777e2e0824eea16c440292cce1f8dfb3952cc9937ff"
         Alamofire.request(url2).validate().responseJSON { response in
             switch response.result {
             case .success:
@@ -74,11 +66,13 @@ class LoadData {
                    // var category: Category = Category()
                     for (_,subJson):(String, JSON) in json["posts"]{
                         var product: Product = Product()
+                        var category: Category = Category()
                         product.id = subJson["id"].intValue
                         product.upvotes = subJson["votes_count"].intValue
                         product.name = subJson["name"].stringValue
+                        product.categ_id = subJson["categ_id"].intValue
                         product.url = subJson["redirect_url"].stringValue
-                        self.category.ProductList.append(product)
+                        category.ProductList.append(product)
                         
                     }
                    

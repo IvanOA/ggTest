@@ -14,8 +14,10 @@ import SwiftyJSON
 
 class ViewController: UITableViewController {
     
+    @IBOutlet weak var bn: UIBarButtonItem!
     let realm = try! Realm()
     var products: [String] = []
+    
     
     func LoadAllData() {
         var category_list = realm.objects(Category)
@@ -45,11 +47,16 @@ class ViewController: UITableViewController {
       //  var categ: Category = Category()
         var loadData: LoadData = LoadData()
         //loadData.LoadCategory()
-        LoadAllData()
+        //LoadAllData()
         
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
     }
+//    @IBAction func bnClicked(sender: AnyObject) {
+//        print("Buttons clicked")
+//        performSegue(withIdentifier: "Category", sender: nil)
+//    }
+    
     func RefreshList(){
         let category_list = self.realm.objects(Category)
         if (category_list.isEmpty != true && products.isEmpty == nil)
