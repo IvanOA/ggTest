@@ -28,6 +28,7 @@ class ViewController: UITableViewController {
     var productName = UILabel()
     var productDescription = UILabel()
     var productVotes = UILabel()
+    var category_name: String = "Tech"
     func LoadAllData() {
         
         print("Loading ALL data")
@@ -37,6 +38,7 @@ class ViewController: UITableViewController {
         for list in category_list {
             print("Loading data")
             if (list.id == id) {
+                category_name = list.name
                 print("Loading \(list.id) data")
                 for item in list.ProductList {
                     product_id.append(item.id)
@@ -57,7 +59,13 @@ class ViewController: UITableViewController {
         //var loadData: LoadData = LoadData()
         //loadData.LoadCategory()
         LoadAllData()
+        var titleButton: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 32))
+        titleButton.setTitle(category_name, for: UIControlState.normal)
+        titleButton.titleLabel?.font = UIFont(name: "HelveticaNeue-UltraLight", size: 25.0)
+        titleButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        titleButton.addTarget(self, action: "titlePressed", for: UIControlEvents.touchUpInside)
         
+        self.navigationItem.titleView = titleButton
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
     }
