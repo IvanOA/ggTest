@@ -51,6 +51,9 @@ class ViewController: UITableViewController {
             }
         }
     }
+    func titlePressed () {
+        self.performSegue(withIdentifier: "Category", sender: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
