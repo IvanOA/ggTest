@@ -12,12 +12,15 @@ import RealmSwift
 class Categories: UITableViewController {
     let realm = try! Realm()
     var categories: [String] = []
+    var id_list: [Int] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Entered category-switcher")
+        
         var category_list = realm.objects(Category)
         for item in category_list {
             categories.append(item.name)
+            id_list.append(item.id)
         }
         
     }
@@ -41,7 +44,10 @@ class Categories: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Main"{
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                
+                let destVC: ViewController = segue.destination as! ViewController
+//                categories[indexPath.row]
+                destVC.id = id_list[indexPath.row]
+//                destVC.products =
 //                let destVC: DetailViewController = segue.destination as! DetailViewController
 //                destVC.product = products[indexPath.row]
             }

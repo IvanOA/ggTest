@@ -15,7 +15,7 @@ class Category: Object {
     dynamic var name: String = ""
     dynamic var teg: String = ""
     override static func primaryKey() -> String?{
-        return "id"
+        return "teg"
     }
 }
 class Product: Object {

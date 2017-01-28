@@ -11,13 +11,9 @@ import UIKit
 
 class LaunchViewController: UIViewController {
 
-    
-    @IBOutlet weak var progressView: UIProgressView!
     var loaddata: LoadData = LoadData()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
-        print("something")
 
         loaddata.LoadCategory()
         
@@ -25,18 +21,8 @@ class LaunchViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 7.0){
             self.performSegue(withIdentifier: "Starter", sender: nil)
         }
-        progressView.setProgress(0, animated: false)
     }
 
-    func updateProgressView() {
-        if progressView.progress != 1 {
-            self.progressView.progress += 1/80
-        } else {
-            //            UIView.animateWithDuration(0.4, animations: { () -> Void in self.button.alpha = 1})
-            performSegue(withIdentifier: "Starter", sender: nil)
-        }
-        
-    }
 
     
 
